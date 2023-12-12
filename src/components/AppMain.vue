@@ -8,6 +8,8 @@ export default {
 };
 </script>
 
-<template></template>
+<template>
+  <MainCardList />
+</template>
 
 <style scoped lang="scss"></style>

@@ -36,8 +36,9 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="cards-container">
     <MainCard
+      class="main-card"
       v-for="card in cards"
       :key="card.id"
       :name="card.name"
@@ -47,4 +48,16 @@ export default {
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.cards-container {
+  margin: auto;
+  width: 70%;
+  display: grid;
+
+  //   il grid template divide in frazioni 'fr' da 150px ciascuna e ripete le card
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  padding: 1rem;
+}
+</style>

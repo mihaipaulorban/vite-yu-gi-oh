@@ -13,11 +13,19 @@ export default {
 </script>
 
 <template>
-  <AppMain />
+  <AppHeader />
+  <div class="app-main-container">
+    <AppMain />
+  </div>
 </template>
 
 <style scoped lang="scss">
 @use './assets/scss/partials/variables' as *;
 @use './assets/scss/partials/common' as *;
 @use './assets/scss/partials/reset' as *;
+
+.app-main-container {
+  padding: 100px;
+  background-color: orange;
+}
 </style>

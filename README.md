@@ -1,7 +1,30 @@
-# Vue 3 + Vite
+# Yu-Gi-Oh Card List
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Questo progetto è una singola pagina applicazione che mostra una lista di carte Yu-Gi-Oh recuperate dinamicamente tramite l'API ufficiale di Yu-Gi-Oh. Utilizza Vue.js e Axios per le richieste.
 
-## Recommended IDE Setup
+## Funzionalità
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Visualizza una lista di carte Yu-Gi-Oh con dettagli come nome, immagine e archetipo.
+- Conteggio dinamico delle carte visualizzate.
+
+## Tecnologie Utilizzate per ora
+
+- Vue.js
+- Axios per le richieste API
+- SCSS per lo styling
+- API di Yu-Gi-Oh per i dati delle carte
+
+## Struttura del Progetto per ora
+
+- `MainCard.vue`: Componente che rappresenta una singola carta.
+- `CardList.vue`: Componente principale che gestisce lo stato e il rendering dell'elenco delle carte.
+
+Quando l'applicazione viene caricata esegue una chiamata all'API in `created` per ottenere i dati delle carte.
+Questi dati sono quindi trasformati e memorizzati in un array chiamato `cards`, che contiene solo le informazioni essenziali come l'ID della carta, il nome, l'URL dell'immagine e l'archetipo.
+
+Il componente `CardList` calcola dinamicamente il numero di carte recuperate e lo visualizza.
+Lo fa con una proprietà calcolata (computed) di Vue chiamata cardsCount, che si segna il numero di elementi nell'array cards.
+
+Nel file HTML del template, con un v-for iteraa sull'array cards e genera una lista di componenti MainCard, ognuno dei quali rappresenta una carta di Yu-Gi-Oh.
+
+Ogni MainCard visualizza le informazioni di una carta specifica.

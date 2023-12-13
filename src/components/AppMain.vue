@@ -1,7 +1,6 @@
 <script>
 import MainCardList from './MainCardList.vue';
 import AppSearchSelect from './AppSearchSelect.vue';
-import { store } from '../store';
 
 export default {
   name: 'AppMain',
@@ -9,17 +8,15 @@ export default {
     MainCardList,
     AppSearchSelect,
   },
-  methods: {
-    filterMethod() {
-      console.log('Selected Archetype:', store.selectedArchetype);
-    },
-  },
 };
 </script>
 
 <template>
   <div class="app-main-container">
-    <AppSearchSelect @filter="filterMethod" />
+    <!-- Select per il filtro -->
+    <AppSearchSelect />
+
+    <!-- Lista di carte -->
     <MainCardList />
   </div>
 </template>
@@ -27,6 +24,8 @@ export default {
 <style scoped lang="scss">
 .app-main-container {
   padding: 50px;
-  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

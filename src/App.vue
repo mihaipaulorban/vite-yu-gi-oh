@@ -13,8 +13,13 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
-  <AppMain />
+  <main>
+    <!-- Header con logo e titolo -->
+    <AppHeader />
+
+    <!-- Main con select, card counter e lista carte -->
+    <AppMain />
+  </main>
 </template>
 
 <style scoped lang="scss">

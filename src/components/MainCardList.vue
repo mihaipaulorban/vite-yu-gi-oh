@@ -28,13 +28,15 @@ export default {
       // Se non è stato selezionato alcun archetype, restituisce tutte le carte
       return this.cards;
     },
+
+    // Comunica il numero di carte a cards-count
     cardsCount() {
       return this.filteredCards.length;
     },
   },
   created() {
     // Faccio prendere a Axios l'API e in particolare i dati che servono a me
-    axios.get(`${this.store.cardsApi}?num=50&offset=0`).then((response) => {
+    axios.get(`${this.store.cardsApi}?num=500&offset=0`).then((response) => {
       this.cards = response.data.data
 
         //    Inserisco nell'array cards i dati di cui ho bisogno
@@ -51,8 +53,10 @@ export default {
 
 <template>
   <div class="card-list">
+    <!-- Contatore delle carte -->
     <div class="cards-count">Found {{ cardsCount }} cards</div>
     <div class="cards-container">
+      <!-- Ciclo per generarmi le carte -->
       <MainCard
         class="main-card"
         v-for="card in filteredCards"
@@ -69,13 +73,17 @@ export default {
 .card-list {
   width: 80%;
   margin: auto;
-  background-color: white;
   padding: 3.5rem;
   .cards-count {
     font-size: 1.5rem;
-    background-color: black;
+    background-color: #2d3436;
+    background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
     color: white;
     padding: 1rem;
+    border-radius: 100px;
+    text-align: center;
+    margin-bottom: 50px;
+    box-shadow: 1px 8px 24px 0px rgba(66, 68, 90, 1);
   }
   .cards-container {
     width: 100%;

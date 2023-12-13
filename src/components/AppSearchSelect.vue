@@ -60,4 +60,13 @@ export default {
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+select {
+  background-color: #252425fb;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+}
+</style>

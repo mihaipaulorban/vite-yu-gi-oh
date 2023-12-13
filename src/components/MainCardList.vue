@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import MainCard from './MainCard.vue';
+import { store } from '../store.js';
 
 export default {
   name: 'CardList',
@@ -11,20 +12,29 @@ export default {
     return {
       // Array che uso per le carte
       cards: [],
-
-      //   Link dell'API
-      apiURL: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
+      store,
     };
   },
   //   Computed per far capire al sito il numero di carte
   computed: {
+    filteredCards() {
+      // Controlla se un archetype è stato selezionato
+      if (this.store.selectedArchetype) {
+        // Filtra le carte in base all'archetype selezionato
+        return this.cards.filter(
+          (card) => card.archetype === this.store.selectedArchetype
+        );
+      }
+      // Se non è stato selezionato alcun archetype, restituisce tutte le carte
+      return this.cards;
+    },
     cardsCount() {
-      return this.cards.length;
+      return this.filteredCards.length;
     },
   },
   created() {
     // Faccio prendere a Axios l'API e in particolare i dati che servono a me
-    axios.get(`${this.apiURL}?num=50&offset=0`).then((response) => {
+    axios.get(`${this.store.cardsApi}?num=50&offset=0`).then((response) => {
       this.cards = response.data.data
 
         //    Inserisco nell'array cards i dati di cui ho bisogno
@@ -45,7 +55,7 @@ export default {
     <div class="cards-container">
       <MainCard
         class="main-card"
-        v-for="card in cards"
+        v-for="card in filteredCards"
         :key="card.id"
         :name="card.name"
         :image-url="card.image_url"

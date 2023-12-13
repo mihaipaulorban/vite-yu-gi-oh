@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { store } from '../store.js';
 
 export default {
   name: 'SearchSelect',
@@ -7,7 +8,9 @@ export default {
     return {
       // Definisco l'arrey in cui inserire l'api e la stringa per lárcheotipo selezionato
       archetypes: [],
-      selectedArchetype: '',
+
+      // Aggiungo store perché altrimenti spacco tutto e non mi si forma il v-for
+      store,
     };
   },
   created() {
@@ -33,14 +36,19 @@ export default {
           ];
         });
     },
+    onChange() {
+      // Emetto l'evento con lárcheotipo selezionato dal select
+      store.selectedArchetype = event.target.value;
+      this.$emit('filter', this.selectedArchetype);
+    },
   },
 };
 </script>
 
 <template>
   <div>
-    <select v-model="selectedArchetype">
-      <option value="">Select an archetype</option>
+    <select v-model="store.selectedArchetype" @change="onChange">
+      <option selected value="">Select an archetype</option>
       <option
         v-for="archetype in archetypes"
         :key="archetype"

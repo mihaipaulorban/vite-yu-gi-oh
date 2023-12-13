@@ -5,6 +5,7 @@ export default {
   name: 'SearchSelect',
   data() {
     return {
+      // Definisco l'arrey in cui inserire l'api e la stringa per lárcheotipo selezionato
       archetypes: [],
       selectedArchetype: '',
     };
@@ -13,20 +14,24 @@ export default {
     this.fetchArchetypes();
   },
   methods: {
+    // Ottengo i dati degll'API
     fetchArchetypes() {
       axios
-        .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
+
+        // num=20&offset=0 <-- per debug
+        .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?')
         .then((response) => {
           const cards = response.data.data;
           this.archetypes = [
+            // Crea un insieme dall'array filtrato e leva i dublicati
             ...new Set(
+              // Estrae il valore archeotype ad ogni carta
               cards
                 .map((card) => card.archetype)
                 .filter((archetype) => archetype)
             ),
           ];
-        })
-        .catch((error) => console.error('Error fetching archetypes:', error));
+        });
     },
   },
 };

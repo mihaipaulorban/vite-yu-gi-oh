@@ -2,12 +2,14 @@
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import AppFooter from './components/AppFooter.vue';
+import AppSearchSelect from './components/AppSearchSelect.vue';
 export default {
   name: 'DefaultTemplate',
   components: {
     AppHeader,
     AppMain,
     AppFooter,
+    AppSearchSelect,
   },
 };
 </script>
@@ -15,6 +17,7 @@ export default {
 <template>
   <AppHeader />
   <div class="app-main-container">
+    <AppSearchSelect />
     <AppMain />
   </div>
 </template>
